@@ -1,12 +1,13 @@
+import "./Todo.css"
 
 function Todo({TodoData}) {
  return(
-     <div>
+     <div className="todoList">
 
-        <input type="checkbox" name="" id="" />
+        <input type="checkbox" name="" id="input" />
         {TodoData}
-        <button>Edit</button>
-        <button>Delete</button>
+        <button className="EditBtn">Edit</button>
+        <button className="DeleteBtn">Delete</button>
 
      </div>
   )

@@ -1,15 +1,15 @@
-
+import "./AddTodo.css"
 
 function AddTodo () {
 
     return(
-        <div>
+        <div className="addTodo">
              <input
              placeholder="Add your Task"
-             type="text"
+             type="text" className="inputTask"
              />
 
-             <button>Add Tasks</button>
+             <button className="AddTask">Add Tasks</button>
         </div>
     )
 }

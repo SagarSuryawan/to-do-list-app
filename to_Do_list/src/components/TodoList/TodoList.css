@@ -1,0 +1,9 @@
+.TodoApp{
+    width: 30%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    padding: 1rem 0;
+    background-color: #cebfc2;
+}
