@@ -1,10 +1,10 @@
 import "./Todo.css"
 
-function Todo({TodoData}) {
+function Todo({TodoData, isFinished}) {
  return(
      <div className="todoList">
 
-        <input type="checkbox" name="" id="input" />
+        <input type="checkbox" name="" id="input" checked = {isFinished} />
         {TodoData}
         <button className="EditBtn">Edit</button>
         <button className="DeleteBtn">Delete</button>

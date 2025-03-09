@@ -1,15 +1,21 @@
-import "./AddTodo.css"
+import { useState } from "react";
+import "./AddTodo.css"  
 
-function AddTodo () {
+function AddTodo ({updateList}) {
 
+    const [inputText, setInputText] = useState('')
     return(
         <div className="addTodo">
+
              <input
              placeholder="Add your Task"
-             type="text" className="inputTask"
+             type="text" 
+             className="inputTask"
+             value={inputText}
+             onChange={task => setInputText(task.target.value)}
              />
 
-             <button className="AddTask">Add Tasks</button>
+             <button onClick={()=>updateList(inputText) } className="AddTask">Add Tasks</button>
         </div>
     )
 }
