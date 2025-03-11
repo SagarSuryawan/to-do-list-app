@@ -15,16 +15,20 @@ function AddTodo ({updateList}) {
              onChange={task => setInputText(task.target.value)}
              />
 
-             <button onClick={()=>updateList(inputText) } className="AddTask">Add Tasks</button>
+             <button onClick={()=>{
+                updateList(inputText)
+                setInputText('')
+                }}className="AddTask">Add Tasks</button>
         </div>
     )
 }
 
 export default AddTodo;
-
-
-
 /*
+App.js has the list state and passes it to TodoList.
+TodoList maps over list and passes each task to Todo.
+Todo receives TodoData and isFinished from the list and renders them.
+
 what happing here ...let discuss
 
 in this component there is input tas tag and button.
