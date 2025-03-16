@@ -16,11 +16,13 @@ function TodoList() {
 
                                       // checked updated
                                       changeFinished = {(isFinished) =>{
-                                        const updatedlList = list.map(t =>{
+                                        const updatedlList = list.map((t) =>{
                                           if(t.id == task.id){
                                             task.finsihed = isFinished
                                           }
+                                          
                                           return t;
+                                         
                                         })
                                         setList(updatedlList)
                                       }}
