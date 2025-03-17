@@ -3,6 +3,7 @@ import { useState } from 'react'
 import './App.css'  
 import TodoList from './components/TodoList/TodoList'
 import Addtodo from './components/Addtodo/Addtodo'
+import todoContex from './Contex/todoContex'
 
 function App() {
   
@@ -12,10 +13,11 @@ function App() {
 ])
 
   return (
-    <>
+    <todoContex.Provider value={{list,setList}}>
       <Addtodo updateList = {(task) =>setList([...list ,{id:list.length+1, todoData:task,finished:false}])}/>
-      <TodoList list = {list}/>
-    </>
+
+      <TodoList/>
+    </todoContex.Provider>
   )
 }
 

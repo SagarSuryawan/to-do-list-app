@@ -12,7 +12,7 @@ function Addtodo({updateList}) {
             value={inputText}
             onChange={(task)=>setInputText(task.target.value)}
             />
-            <button onClick={() =>updateList(inputText)}>Add Task</button>
+            <button onClick={() => {updateList(inputText)}}>Add Task</button>
         </div>
     )
 }
