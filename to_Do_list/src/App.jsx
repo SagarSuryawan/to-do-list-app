@@ -4,27 +4,22 @@ import './App.css'
 import AddTodo from './components/AddTodo/AddTodo'
 import TodoList from './components/TodoList/TodoList'
 import TodoContex from './contex/TodoContex'
+import todoDispatchContex from './contex/todoDispatch'
 
 function App() {
-// const [list, setList] = useState( 
-//   [
-//    { id:1, todoData: 'todo 1 ', finished: false },
 
-//  ]      
-// )
-const [list, dispatch] =  useReducer(todoReducer, [])
+ const [list, dispatch] =  useReducer(todoReducer, []); 
 
   return (
 
     <TodoContex.Provider value={{list}}>
 
+      <todoDispatchContex.Provider value={{dispatch}}>
         {console.log(list)}
-        <AddTodo updateList={(task) => {
-          dispatch({type: 'add_todo', todoText: task})
-        }} />
-        
+        <AddTodo />
         <TodoList/>
-
+      </todoDispatchContex.Provider>
+    
     </TodoContex.Provider>
   )
 }

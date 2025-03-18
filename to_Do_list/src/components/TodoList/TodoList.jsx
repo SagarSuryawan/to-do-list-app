@@ -2,51 +2,44 @@ import { useContext, useState } from "react";
 import Todo from "../Todo/Todo";
 import "./TodoList.css"
 import TodoContex from "../../contex/TodoContex";
+import todoDispatch from "../../contex/todoDispatch";
 
 function TodoList() {
 
-  const {list, setList} = useContext(TodoContex)
+  const {list} = useContext(TodoContex)
+  const {dispatch}  = useContext(todoDispatch)
+
+  // checked updated
+  function onFinished(task, isFinished) {
+    dispatch({type:'finished_todo', payload:{isFinished, task}})
+  }
+
+  function oonDelete (task) {
+    dispatch({type: 'delete_todo', payload:{task}})
+  }
+
+  function oonEdit(task,todoText){
+    dispatch({type: 'edit_todo', payload:{task, todoText}})
+  }
+  
 
     return (
-        <div className="TodoApp">
-                    {list.length > 0 && 
-                    list.map( (task) => <Todo key={task.id} id= {task.id} 
-                                      TodoData = {task.todoData} 
-                                      isFinished={task.finished}
-
-                                      // checked updated
-                                      changeFinished = {(isFinished) =>{
-                                        const updatedlList = list.map((t) =>{
-                                          if(t.id == task.id){
-                                            task.finsihed = isFinished
-                                          }
-                                          
-                                          return t;
-                                         
-                                        })
-                                        setList(updatedlList)
-                                      }}
-
-                                      // delete task
-                                      onDelete = {()=>{
-                                        const updatedlList = list.filter((t) => 
-                                        t.id != task.id
-                                        )
-                                        setList(updatedlList)
-                                      }}
-
-                                      // edit task
-                                        onEdit = {(todoText) =>{
-                                          const updatedlList = list.map(t =>{
-                                            if(t.id == task.id){
-                                              task.todoData = todoText
-                                            }
-                                            return t;
-                                          })
-                                          setList(updatedlList)
-                                      }}
-                                      />)}
-        </div>
+        <div className="TodoApp">{list.length > 0 && 
+              list.map( (task) => 
+              <Todo key={task.id} 
+              id= {task.id} 
+              TodoData = {task.todoData}
+              isFinished={task.finished}
+              // checked updated
+              changeFinished = {(isFinished) =>
+              onFinished(task, isFinished)
+            }
+              // delete task
+              onDelete = {()=> oonDelete(task)}
+              // edit task
+              onEdit = {(todoText) => oonEdit(task, todoText)}
+              />)}
+      </div>
     )
 
 }
