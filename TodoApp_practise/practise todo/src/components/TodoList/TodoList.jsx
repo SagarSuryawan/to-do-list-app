@@ -1,11 +1,22 @@
 import { useContext } from "react"
 import Todo from "../Todo/Todo"
 import todoContex from "../../Contex/todoContex"
+import todoDispatch from "../../Contex/todoDispatch"
 
 
 function TodoList() {
+    const {list} = useContext(todoContex)
+    const {dispatch} = useContext(todoDispatch)
 
-    const {list, setList} = useContext(todoContex)
+    function onComplete(task,isFinished){
+        dispatch({type:'finished_todo', payload:{isFinished, task}})    
+    }
+    function onEdits(todoText, task){
+        dispatch({type: "edit_todo", payload:{todoText, task}})
+    }
+    function onDelets(task){
+        dispatch({type: "delete_todo", payload:{task}})
+    }
    
     return(
         <div>
@@ -17,32 +28,17 @@ function TodoList() {
 
             // check updated
             changeFinished = {(isFinished)=>{
-                const updatedList = list.map((t)=>{
-                    if(t.id == task.id){
-                        task.finished = isFinished
-                    }
-                    return t;
-                })
-                setList(updatedList)
+                onComplete(task,isFinished)
             }}
 
             // on Editing
             onEdit = {(todoText)=>{
-                const updatedList = list.map((t)=>{
-                    if(t.id == task.id){
-                        task.todoData = todoText
-                    }
-                    return t;
-                })
-                setList(updatedList)
+                onEdits(todoText, task)
             }}
 
             // On Delete
             onDelete = {()=>{
-                const updatedList = list.filter((t)=>
-                    (t.id != task.id)
-                )
-            setList(updatedList)
+                onDelets(task)
             }}
            />)}
         </div>
