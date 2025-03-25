@@ -1,5 +1,5 @@
 
-    function todoReducer(state, action){
+    function todoReducer(state = [], action){
         if(action.type == 'add_todo'){
             let task = action.payload.task
             return [

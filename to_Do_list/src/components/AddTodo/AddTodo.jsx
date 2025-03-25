@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import "./AddTodo.css"  
-import todoDispatch from "../../contex/todoDispatch";
 
-function AddTodo () {
+
+function AddTodo ({addTodo}) {
 
     const [inputText, setInputText] = useState('')
-    const {dispatch} = useContext(todoDispatch)
+
     return(
         <div className="addTodo">
 
@@ -18,7 +18,7 @@ function AddTodo () {
              />
 
              <button onClick={()=>{
-                dispatch({type: 'add_todo', payload:{task:inputText}})
+                addTodo(inputText)
                 setInputText('')
                 }}className="AddTask">Add Tasks</button>
         </div>
