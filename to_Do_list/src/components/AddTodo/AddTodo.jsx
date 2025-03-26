@@ -18,7 +18,7 @@ function AddTodo ({addTodo}) {
              />
 
              <button onClick={()=>{
-                addTodo(inputText)
+                addTodo({task:inputText})
                 setInputText('')
                 }}className="AddTask">Add Tasks</button>
         </div>
